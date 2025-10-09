@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:padding="16dp"
+	android:gravity="center"
+	android:background="#FF1E1E1E">
+
+	<Button
+		android:id="@+id/btn_cn"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="16dp"
+		android:text="@string/app_cn"
+		android:textColor="#FFFFFFFF"
+		android:backgroundTint="#FFE74C3C"
+		android:textSize="18sp"
+		android:padding="12dp"/>
+
+	<Button
+		android:id="@+id/btn_tw"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="16dp"
+		android:text="@string/app_tw"
+		android:textColor="#FFFFFFFF"
+		android:backgroundTint="#FF3498DB"
+		android:textSize="18sp"
+		android:padding="12dp"/>
+
+	<Button
+		android:id="@+id/btn_jp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="16dp"
+		android:text="@string/app_jp"
+		android:textColor="#FFFFFFFF"
+		android:backgroundTint="#FFE67E22"
+		android:textSize="18sp"
+		android:padding="12dp"/>
+
+	<Button
+		android:id="@+id/btn_en"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="16dp"
+		android:text="@string/app_en"
+		android:textColor="#FFFFFFFF"
+		android:backgroundTint="#FF9B59B6"
+		android:textSize="18sp"
+		android:padding="12dp"/>
+
+	<Button
+		android:id="@+id/btn_kr"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="@string/app_kr"
+		android:textColor="#FFFFFFFF"
+		android:backgroundTint="#FFF1C40F"
+		android:textSize="18sp"
+		android:padding="12dp"/>
+
+</LinearLayout>
+

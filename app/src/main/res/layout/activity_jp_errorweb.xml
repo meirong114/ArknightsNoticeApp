@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="由于详细页面出现问题，请使用浏览器来查看。"
+		android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+</RelativeLayout>
+

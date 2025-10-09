@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="whirity404.arknights.notice">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.READ_HOME_APP_SEARCH_DATA"/>
+
+    <uses-permission android:name="android.permission.READ_ASSISTANT_APP_SEARCH_DATA"/>
+
+    <uses-permission android:name="android.permission.GLOBAL_SEARCH"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_BASIC_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
+    <uses-permission android:name="android.permission.READ_INPUT_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO"/>
+
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO"/>
+
+    <uses-permission android:name="android.permission.READ_NEARBY_STREAMING_POLICY"/>
+
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_PRECISE_PHONE_STATE"/>
+
+    <uses-permission android:name="android.permission.READ_SMS"/>
+
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.READ_SYNC_STATS"/>
+
+    <uses-permission android:name="com.android.voicemail.permission.READ_VOICEMAIL"/>
+
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.WRITE_GSERVICES"/>
+
+    <uses-permission android:name="com.android.voicemail.permission.WRITE_VOICEMAIL"/>
+
+    <uses-permission android:name="android.permission.REBOOT"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:resizeableActivity="true">
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:label="@string/app_la">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+
+            </intent-filter>
+
+        </activity>
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="4.0"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_cn"
+            android:name="whirity404.arknights_cn.BulletinListActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_cn"
+            android:name="whirity404.arknights_cn.NoticeDetailActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_en"
+            android:name="whirity404.arknights_en.BulletinListActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_en"
+            android:name="whirity404.arknights_en.NoticeDetailActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_tw"
+            android:name="whirity404.arknights_tw.BulletinListActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_tw"
+            android:name="whirity404.arknights_tw.NoticeDetailActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_jp"
+            android:name="whirity404.arknights_jp.BulletinListActivity"/>
+
+        <activity
+            android:exported="false"
+            android:label="@string/app_jp"
+            android:name="whirity404.arknights_jp.NoticeDetailActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_kr"
+            android:name="whirity404.arknights_kr.BulletinListActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_kr"
+            android:name="whirity404.arknights_kr.NoticeDetailActivity"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_jp"
+            android:name="whirity404.arknights_jp.ErrorForWeb">
+
+        </activity>
+
+        <activity
+            android:label="@string/app_jp"
+            android:exported="true"
+            android:name="whirity404.arknights_jp.NoticeDetailActivity2"/>
+
+        <activity
+            android:exported="true"
+            android:label="@string/app_la"
+            android:name=".MainActivity"/>
+
+        <receiver android:name="whirity404.arknights.notice.StartupReceiver">
+
+            <intent-filter>
+
+                <action android:name="whirity404.arknights.notice.StartupReceiver"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="arknights"/>
+
+            </intent-filter>
+
+        </receiver>
+
+        <activity 
+            android:name="whirity404.arknights_cn.NoticeWebActivity"
+            android:label="webview_cn"
+            android:exported="true"/>
+        
+        <activity 
+            android:name="whirity404.arknights_en.NoticeWebActivity"
+            android:label="webview_en"
+            android:exported="true"/>
+        
+        <activity 
+            android:name="whirity404.arknights_kr.NoticeWebActivity"
+            android:label="webview_kr"
+            android:exported="true"/>
+        
+        <activity 
+            android:name="whirity404.arknights_jp.NoticeWebActivity"
+            android:label="webview_jp"
+            android:exported="true"/>
+        
+        <activity 
+            android:name="whirity404.arknights_tw.NoticeWebActivity"
+            android:label="webview_cn"
+            android:exported="true"/>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">ARKNIGHTS_ANNOUCEMENT</string>
+    <string name="exit">Press back button to exit.</string>
+    <string name="exit_notice">EXIT</string>
+    <string name="exit_content">Do you want to exit?</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="notopen_1">Dress up/public recruitment links may not open</string>
+    <string name="notopen_0">This is just a written announcement</string>
+    <string name="notTime">Fist show time : </string>
+    <string name="notContent">No detailed content available at the moment</string>
+    <string name="notload">Loading failed. reason:</string>
+    <string name="uncid">Invalid announcement ID (cid)</string>
+    <string name="refresh">REFRESH</string>
+    <string name="app_cn">Chinese-Simple Arknights Annoucement</string>
+    <string name="app_en">GLOBAL Arknights Annoucement</string>
+    <string name="app_tw">Chinese-Traditional Arknights Annoucement</string>
+    <string name="app_jp">Japan Arknights Annoucement</string>
+    <string name="app_kr">Korean Arknights Annoucement</string>
+    <string name="app_la">Annoucement-Arknights</string>
+</resources>

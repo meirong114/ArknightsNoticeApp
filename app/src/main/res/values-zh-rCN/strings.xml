@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">明日方舟公告</string>
+    <string name="exit">退出。</string>
+    <string name="exit_notice">退出？</string>
+    <string name="exit_content">是否确实要退出？</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="notopen_1">装扮/公招等链接可能无法打开</string>
+    <string name="notopen_0">这只是文字公告</string>
+    <string name="notTime">发布时间</string>
+    <string name="notContent">暂无详细内容</string>
+    <string name="notload">加载失败。原因：</string>
+    <string name="uncid">无效的公告ID(cid)</string>
+    <string name="refresh">刷新</string>
+    <string name="app_cn">国服明日方舟公告</string>
+    <string name="app_en">GLOBAL服明日方舟公告</string>
+    <string name="app_tw">台服明日方舟公告</string>
+    <string name="app_jp">日服明日方舟公告</string>
+    <string name="app_kr">韩服明日方舟公告</string>
+    <string name="app_la">公告明日方舟</string>
+</resources>
