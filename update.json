@@ -1,7 +1,7 @@
 {
-  "version": "1.4.1",
-  "title": "更新1.4.1",
-  "content": "本次更新如下内容：\n 1.添加HTML解析\n 2.修复字符串\n 3.修复若干性能问题",
+  "version": "1.4.2",
+  "title": "更新1.4.2",
+  "content": "修复NULL，新增模块PRTS",
   "downloadUrl": "https://github.com/meirong114/ArknightsNoticeApp/",
   "forceUpd": false
 }
