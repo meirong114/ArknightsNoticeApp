@@ -21,7 +21,7 @@ import android.content.DialogInterface;
 
 public class UpdateChecker {
 
-    private static final String UPDATE_JSON_URL = "https://cdn.jsdelivr.net/gh/whirity404/ArknightsNoticeApp@update.json";
+    private static final String UPDATE_JSON_URL = "https://fastly.jsdelivr.net/gh/meirong114/ArknightsNoticeApp@latest/update.json";
     private Context context;
 
     public UpdateChecker(Context context) {
@@ -33,6 +33,10 @@ public class UpdateChecker {
     }
 
     private class CheckUpdateTask extends AsyncTask<Void, Void, String> {
+
+        private Exception e;
+
+        private String currentVersionParts;
         @Override
         protected String doInBackground(Void... voids) {
             try {
@@ -71,11 +75,32 @@ public class UpdateChecker {
                     }
                 } catch (Exception e) {
                     Log.e("UpdateChecker", "Error parsing update JSON", e);
-                    showNetworkErrorDialog();
+                    showNetworkErrorDialog(e);
                 }
             } else {
-                showNetworkErrorDialog();
+                showNetworkErrorDialog(e);
             }
+        }
+        private void showNetworkErrorDialog(Exception e) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("网络错误");
+            String error = "无法连接到更新服务器，请检查您的网络连接。" + e;
+            builder.setMessage("无法连接到更新服务器，请检查您的网络连接。\n\nErroor:  " + e + "(" + error + ")" + "\n\n\nVersion:" + currentVersionParts);
+            builder.setPositiveButton("检查网络", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
+                        context.startActivity(intent);
+                    }
+                });
+            builder.setNegativeButton("退出", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((Activity) context).finish();
+                    }
+                });
+            builder.setCancelable(false);
+            builder.show();
         }
     }
 
@@ -138,25 +163,6 @@ public class UpdateChecker {
         builder.show();
     }
 
-    private void showNetworkErrorDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("网络错误");
-        builder.setMessage("无法连接到更新服务器，请检查您的网络连接。");
-        builder.setPositiveButton("检查网络", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Settings.ACTION_WIFI_SETTINGS);
-                    context.startActivity(intent);
-                }
-            });
-        builder.setNegativeButton("退出", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    ((Activity) context).finish();
-                }
-            });
-        builder.setCancelable(false);
-        builder.show();
-    }
+    
 }
 
