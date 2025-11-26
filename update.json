@@ -1,7 +1,7 @@
 {
-  "version": "1.4.2",
-  "title": "更新1.4.2",
-  "content": "修复NULL，新增模块PRTS",
+  "version": "1.4.3",
+  "title": "2025-11月更新（版本1.4.3）",
+  "content": "在该版本下，请在应用内按返回键退出，不要直接划掉后台，否则很有可能再也打不开",
   "downloadUrl": "https://github.com/meirong114/ArknightsNoticeApp/",
-  "forceUpd": false
+  "forceUpd": true
 }

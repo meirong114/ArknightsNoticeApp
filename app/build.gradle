@@ -8,8 +8,8 @@ android {
         applicationId "whirity404.arknights.notice"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 142
-        versionName "1.4.2"
+        versionCode 143
+        versionName "1.4.3"
     }
     buildTypes {
         release {
@@ -22,7 +22,7 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.squareup.okhttp3:okhttp:3.12.13'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.9'
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.tencent.tbs.tbssdk:sdk:43939'
 }
-

@@ -19,6 +19,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import android.text.Html;
+import android.view.LayoutInflater;
+import android.widget.ImageView;
+import androidx.appcompat.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class NoticeDetailActivity extends AppCompatActivity {
     private ProgressBar progressBar;
@@ -31,6 +35,7 @@ public class NoticeDetailActivity extends AppCompatActivity {
 
     // 定义要检测的关键词数组
     private static final String[] KEYWORDS = {"音律"};
+    private static final String[] KEYWORDS_SPORT = {"促融共竟"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +65,26 @@ public class NoticeDetailActivity extends AppCompatActivity {
 
         new LoadDetailTask().execute(cid);
     }
+    
+    private void showDialogSport() {
+        
+        AlertDialog dialog = new AlertDialog.Builder(this)
+            .setTitle("")
+            .setMessage("很抱歉，“明日方舟”已停止运行。")
+            /*
+            .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dia, int which) {
+
+                }
+            })
+            */
+            .setNegativeButton("确定", null)
+            .create();
+        dialog.show();
+        
+    }
 
     // 检测文本中是否包含关键词
     private void checkKeywords(String text) {
@@ -70,7 +95,28 @@ public class NoticeDetailActivity extends AppCompatActivity {
         for (String keyword : KEYWORDS) {
             if (text.contains(keyword)) {
                 Toast.makeText(this, "畫了不賣，心胸狹隘", Toast.LENGTH_SHORT).show();
-                break; // 找到一个关键词就停止检测
+            }
+        }
+        
+        for (String keyword_sport : KEYWORDS_SPORT) {
+            if (text.contains(keyword_sport)) {
+                showDialogSport();
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                    .setTitle("")
+                    .setMessage("很抱歉，“明日方舟”已停止运行。")
+                    /*
+                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                     @Override
+                     public void onClick(DialogInterface dia, int which) {
+
+                     }
+                     })
+                     */
+                    .setNegativeButton("确定", null)
+                    .create();
+                dialog.show();
+                break;
             }
         }
     }
@@ -259,6 +305,7 @@ if (detail.getJumpLink() != null && !detail.getJumpLink().isEmpty()) {
                 titleView.setText(detail.getTitle());
                 titleView.setVisibility(View.VISIBLE);
                 checkKeywords(detail.getTitle());
+                checkSportKeywords(detail.getTitle());
             }
 
             // 显示header并检测关键词
@@ -266,6 +313,7 @@ if (detail.getJumpLink() != null && !detail.getJumpLink().isEmpty()) {
                 headerView.setText(detail.getHeader());
                 headerView.setVisibility(View.VISIBLE);
                 checkKeywords(detail.getHeader());
+                checkSportKeywords(detail.getHeader());
             }
 
             // 显示内容
@@ -310,6 +358,9 @@ if (detail.getJumpLink() != null && !detail.getJumpLink().isEmpty()) {
             if (detail.getDisplayTime() != null) {
                 timeView.setText(detail.getDisplayTime());
             }
+        }
+
+        private void checkSportKeywords(String header) {
         }
         
     }

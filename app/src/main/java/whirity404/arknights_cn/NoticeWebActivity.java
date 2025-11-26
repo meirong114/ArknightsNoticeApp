@@ -3,55 +3,71 @@ package whirity404.arknights_cn;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import whirity404.arknights.notice.R;
 
+// 导入 TBS 相关类
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
+
 public class NoticeWebActivity extends AppCompatActivity {
-    
+
     private WebView webView;
     private String currentUrl;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         destroyWebView();
         setContentView(R.layout.activity_notice_web);
-        
+
+        // 初始化 TBS (可选，通常在 Application 中初始化)
+        // QbSdk.initX5Environment(this, null);
+
         // 初始化工具栏
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
         // 显示返回按钮
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        
+
         webView = findViewById(R.id.webView);
-        
-        // 配置WebView
+
+        // 配置 TBS WebView
         webView.getSettings().setJavaScriptEnabled(true);
+        // 修改 UA 使得 web 端正确判断  
+        String ua = webView.getSettings().getUserAgentString();  
+        webView.getSettings().setUserAgentString(ua + "; 自定义标记; TBS");
+
         webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                // 页面加载完成后更新标题
-                if (getSupportActionBar() != null) {
-                    String title = view.getTitle();
-                    if (title != null && !title.isEmpty()) {
-                        getSupportActionBar().setTitle(title);
-                    } else {
-                        getSupportActionBar().setTitle("内置浏览器");
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    // 页面加载完成后更新标题
+                    if (getSupportActionBar() != null) {
+                        String title = view.getTitle();
+                        if (title != null && !title.isEmpty()) {
+                            getSupportActionBar().setTitle(title);
+                        } else {
+                            getSupportActionBar().setTitle("内置浏览器");
+                        }
                     }
                 }
-            }
-        });
-        
-        // 获取传递的URL
+
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    // 使用当前 WebView 加载 URL，不跳转到系统浏览器
+                    view.loadUrl(url);
+                    return true;
+                }
+            });
+
+        // 获取传递的 URL
         currentUrl = getIntent().getStringExtra("url");
         if (currentUrl != null && !currentUrl.isEmpty()) {
             webView.loadUrl(currentUrl);
@@ -60,22 +76,22 @@ public class NoticeWebActivity extends AppCompatActivity {
                 getSupportActionBar().setTitle("加载中...");
             }
         } else {
-            Toast.makeText(this, "无效的URL", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "无效的 URL", Toast.LENGTH_SHORT).show();
             finish();
         }
     }
-    
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // 创建菜单
         getMenuInflater().inflate(R.menu.menu_webview, menu);
         return true;
     }
-    
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        
+
         if (id == android.R.id.home) {
             // 返回按钮
             onBackPressed();
@@ -89,16 +105,16 @@ public class NoticeWebActivity extends AppCompatActivity {
             openInSystemBrowser();
             return true;
         } else if (id == R.id.menu_destroy_webview) {
-            // 强行结束WebView实例
+            // 强行结束 WebView 实例
             destroyWebView();
             return true;
         }
-        
+
         return super.onOptionsItemSelected(item);
     }
-    
+
     /**
-     * 刷新WebView
+     * 刷新 WebView
      */
     private void refreshWebView() {
         if (webView != null) {
@@ -106,7 +122,7 @@ public class NoticeWebActivity extends AppCompatActivity {
             Toast.makeText(this, "页面已刷新", Toast.LENGTH_SHORT).show();
         }
     }
-    
+
     /**
      * 使用系统浏览器打开
      */
@@ -114,7 +130,7 @@ public class NoticeWebActivity extends AppCompatActivity {
         if (currentUrl != null && !currentUrl.isEmpty()) {
             try {
                 android.content.Intent intent = new android.content.Intent(android.content.Intent.ACTION_VIEW, 
-                        android.net.Uri.parse(currentUrl));
+                                                                           android.net.Uri.parse(currentUrl));
                 startActivity(intent);
                 Toast.makeText(this, "已在系统浏览器中打开", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
@@ -122,74 +138,81 @@ public class NoticeWebActivity extends AppCompatActivity {
             }
         }
     }
-    
+
     /**
-     * 强行结束WebView实例
+     * 强行结束 WebView 实例
      */
     private void destroyWebView() {
         if (webView != null) {
             // 停止加载
             webView.stopLoading();
-            
+
             // 从父视图移除
             if (webView.getParent() != null) {
                 ((android.view.ViewGroup) webView.getParent()).removeView(webView);
             }
-            
-            // 清理WebView
+
+            // 清理 WebView
             webView.clearHistory();
             webView.clearCache(true);
-            webView.clearFormData();
-            webView.clearMatches();
-            webView.clearSslPreferences();
-            
-            // 销毁WebView
+            // TBS WebView 可能没有以下方法，需要注释掉或处理异常
+            // webView.clearFormData();
+            // webView.clearMatches();
+            // webView.clearSslPreferences();
+
+            // 销毁 WebView
             webView.destroy();
             webView = null;
-            
-            Toast.makeText(this, "WebView实例已结束", Toast.LENGTH_SHORT).show();
-            
-            // 重新创建WebView
+
+            Toast.makeText(this, "WebView 实例已结束", Toast.LENGTH_SHORT).show();
+
+            // 重新创建 WebView
             recreateWebView();
         }
     }
-    
+
     /**
-     * 重新创建WebView
+     * 重新创建 WebView
      */
     private void recreateWebView() {
         webView = new WebView(this);
         webView.setId(R.id.webView);
-        
-        // 重新配置WebView
+
+        // 重新配置 WebView
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                if (getSupportActionBar() != null) {
-                    String title = view.getTitle();
-                    if (title != null && !title.isEmpty()) {
-                        getSupportActionBar().setTitle(title);
-                    } else {
-                        getSupportActionBar().setTitle("内置浏览器");
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    if (getSupportActionBar() != null) {
+                        String title = view.getTitle();
+                        if (title != null && !title.isEmpty()) {
+                            getSupportActionBar().setTitle(title);
+                        } else {
+                            getSupportActionBar().setTitle("内置浏览器");
+                        }
                     }
                 }
-            }
-        });
-        
-        // 重新加载URL
+
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    view.loadUrl(url);
+                    return true;
+                }
+            });
+
+        // 重新加载 URL
         if (currentUrl != null && !currentUrl.isEmpty()) {
             webView.loadUrl(currentUrl);
         }
-        
+
         // 添加到布局
         android.widget.LinearLayout layout = findViewById(R.id.webview_container);
         layout.addView(webView, new android.widget.LinearLayout.LayoutParams(
-            android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
-            android.widget.LinearLayout.LayoutParams.MATCH_PARENT));
+                           android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                           android.widget.LinearLayout.LayoutParams.MATCH_PARENT));
     }
-    
+
     @Override
     public void onBackPressed() {
         if (webView != null && webView.canGoBack()) {
@@ -198,7 +221,7 @@ public class NoticeWebActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-    
+
     @Override
     protected void onDestroy() {
         if (webView != null) {
@@ -207,5 +230,21 @@ public class NoticeWebActivity extends AppCompatActivity {
             webView = null;
         }
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (webView != null) {
+            webView.onResume();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (webView != null) {
+            webView.onPause();
+        }
     }
 }
