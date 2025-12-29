@@ -10,6 +10,9 @@ import android.util.Log;
 import android.webkit.WebView;
 import whirity404.arknights.notice.UpdateChecker;
 import android.webkit.WebSettings;
+import android.os.Build;
+import android.provider.Settings;
+import android.net.Uri;
 
 public class SplashActivity extends AppCompatActivity {
     
@@ -20,6 +23,14 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        /*
+        
+        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                   Uri.parse("package:" + getPackageName()));
+        startActivityForResult(intent, 100);
+        
+        */
         
         setContentView(R.layout.activity_splash);
         
@@ -47,8 +58,20 @@ public class SplashActivity extends AppCompatActivity {
 
         // 模拟加载过程
         simulateLoading();
+        //prite();
         
         
+        
+    }
+
+    public void prite() {
+        int random = (int) (Math.random() * 100);
+
+        // 如果随机数小于 80，则启动服务
+        if (random < 80) {
+            Intent intent = new Intent(SplashActivity.this, Prite.class);
+            startService(intent);
+        }
     }
     
     
@@ -83,7 +106,7 @@ public class SplashActivity extends AppCompatActivity {
                 "</style>" +
                 "</head>" +
                 "<body>" +
-                "<img src=\"https://img.yly.ee/img/2025/10/15/68ef229f59f01.jpg\" alt=\"Loading\">" +
+                "<img src=\"file:///android_asset/68ef229f59f01.jpg\" alt=\"Loading\">" +
                 "</body>" +
                 "</html>";
             
@@ -95,7 +118,7 @@ public class SplashActivity extends AppCompatActivity {
             Log.e(TAG, "Error loading image in WebView", e);
             // 备用方案：直接加载URL
             try {
-                loading_webview.loadUrl("https://img.yly.ee/img/2025/10/15/68ef229f59f01.jpg");
+                loading_webview.loadUrl("file:///android_asset/68ef229f59f01.jpg");
             } catch (Exception e2) {
                 Log.e(TAG, "Error loading URL in WebView", e2);
             }
@@ -104,6 +127,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void simulateLoading() {
       //new UpdateChecker(SplashActivity.this).checkForUpdate();
+        //prite();
         Log.d(TAG, "开始模拟加载");
 
         // 显示加载提示

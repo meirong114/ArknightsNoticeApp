@@ -294,8 +294,12 @@ if (detail.getJumpLink() != null && !detail.getJumpLink().isEmpty()) {
             // 显示banner图片（使用WebView）
             if (detail.getBannerImageUrl() != null && !detail.getBannerImageUrl().isEmpty()) {
                 String html = "<html><body style='margin:0;padding:0;'>" +
+                    "<a href='" + detail.getJumpLink() + "' target='_blank'>" + 
                     "<img src='" + detail.getBannerImageUrl() + "' " +
-                    "style='width:100%;height:auto;'/></body><title>Arknights</title><a href='https://ak.hypergryph.com/download'><h3>Press here to download Arknights</h3></a></html>";
+                    "style='width:100%;height:auto;'/>" + 
+                    "</a></body><title>Arknights</title><a href='https://ak.hypergryph.com/download'><h3>download Arknights</h3></a><br></br>" + 
+                    "<a href='https://bing.com' target='_blank'>" + "<p>Test</p>" + "</a>" +
+                    "</html>";
                 bannerWebView.loadData(html, "text/html", "UTF-8");
                 bannerWebView.setVisibility(View.VISIBLE);
             }

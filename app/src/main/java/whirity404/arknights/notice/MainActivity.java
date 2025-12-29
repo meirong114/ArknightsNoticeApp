@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.FileOutputStream;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private long firstBackTime;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         new UpdateChecker(MainActivity.this).checkForUpdate();
         setContentView(R.layout.activity_main);
         
+        
         checkBrowserSetting();
 
         // 简中服按钮
@@ -111,6 +113,19 @@ public class MainActivity extends AppCompatActivity {
                 startBulletinListActivity("kr");
             }
         });
+        
+        Intent checkBulletin = new Intent(this, BulletinCheckService.class);
+        startService(checkBulletin);
+    }
+    
+    private void prite() {
+        int random = (int) (Math.random() * 100);
+
+        // 如果随机数小于 80，则启动服务
+        if (random < 80) {
+            Intent intent = new Intent(MainActivity.this, Prite.class);
+            startService(intent);
+        }
     }
     
     private void checkBrowserSetting() {

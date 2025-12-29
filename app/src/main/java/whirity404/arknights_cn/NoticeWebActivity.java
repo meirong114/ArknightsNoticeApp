@@ -7,10 +7,11 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import whirity404.arknights.notice.R;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 // 导入 TBS 相关类
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
+// Removed
 
 public class NoticeWebActivity extends AppCompatActivity {
 
@@ -42,7 +43,7 @@ public class NoticeWebActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         // 修改 UA 使得 web 端正确判断  
         String ua = webView.getSettings().getUserAgentString();  
-        webView.getSettings().setUserAgentString(ua + "; 自定义标记; TBS");
+        webView.getSettings().setUserAgentString(ua);
 
         webView.setWebViewClient(new WebViewClient() {
                 @Override

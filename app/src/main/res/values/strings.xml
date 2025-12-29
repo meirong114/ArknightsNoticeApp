@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">ARKNIGHTS_ANNOUCEMENT</string>
     <string name="exit">Press back button to exit.</string>
-    <string name="exit_notice">EXIT</string>
-    <string name="exit_content">Do you want to exit?</string>
+    <string name="exit_notice">Menu</string>
+    <string name="exit_content">Choose a action.</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="notopen_1">Dress up/public recruitment links may not open</string>
@@ -18,4 +18,11 @@
     <string name="app_jp">Japan Arknights Annoucement</string>
     <string name="app_kr">Korean Arknights Annoucement</string>
     <string name="app_la">Annoucement-Arknights</string>
+    <string name="upd_Title">New Announcements</string>
+    <string name="notification_Name">Bulletin Notification</string>
+    <string name="upd_CHN">New Update for Chinese Mainland Server</string>
+    <string name="upd_CTW">New Update for Taiwan Server</string>
+    <string name="upd_en">New Update for Global Server</string>
+    <string name="upd_jp">New Update for Japan Server</string>
+    <string name="upd_kr">New Update for KR Server</string>
 </resources>
